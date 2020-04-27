@@ -2,7 +2,7 @@ Precised.js
 ======
 
 JS is very comfortable language for coding. I really like it and think you too :)  
-But all of us have issues and JS isn\'t exception.  
+But all of us have issues and JS isn\'t an exception.  
 I\'ll try to give solutions for some annoying issues of JS and make my and your life a bit easier.  
 
 Goals:
@@ -20,7 +20,6 @@ So idea of **Precised.js** is simple.
 2. Transform them to integers.
 3. Do calculation
 4. Transform back  
-Voila  
 
 | [x] |    Operation   |   Method   |
 |:---:|:---------------|:-----------|
@@ -31,14 +30,17 @@ Voila
 
 Truncation
 ---
-
-- [ ] Return precised decimal without rounding  | (x).precise(n)  
-Issue:  
-> `100.00067.toFixed(4)` give us `100.0007`  
+Another problem is numbers truncation. Example: `100.00067.toFixed(4)` gives `100.0007`.  
+Expectation: `100.00067` precised to `4` digits after dot should be `100.0006`.  
+JS uses banker`s rounding for numbers. Details here: https://floating-point-gui.de/errors/rounding/.
+Let`s describe easy way to keep numbers always rounded down.
+1. Convert float number to "string" type
+2. Cut as many characters as you need OR add trailing zeros  
   
-Goal:  
-> Decimal `100.00067` precised to `4` digits after dot should be `100.0006`  
-
+| [x] |   Operation   |     Method     |
+|:---:|:--------------|:---------------|
+| [ ] | Precising     | (a).precise(n) | 
+  
 Formatting
 ---
 
