@@ -64,7 +64,16 @@ const zero = function(exp) {
     return new Array(exp + 1).join('0');
 };
 
+const addTrailingZeros = (targetString, precision) => {
+    if (targetString.length < precision) {
+        return addTrailingZeros(`${targetString}0`, precision);
+    }
+
+    return targetString;
+}
+
 export {
+    addTrailingZeros,
     as_integer,
     neg_exp,
     pos_exp,

@@ -1,11 +1,11 @@
-import { as_integer, format } from './helpers';
+import { as_integer, format, addTrailingZeros } from './helpers';
 
 /* Should be as params */
 const DECIMAL_SEPARATOR = '.';
 
 export class Decimal {
-    constructor(num) {
-        this.internal = String(num );
+    constructor(num = 0) {
+        this.internal = String(+num);
         this.as_int = as_integer(this.internal, DECIMAL_SEPARATOR);
     }
 
@@ -27,4 +27,22 @@ export class Decimal {
     sub = target => {
         return this.add(target * -1);
     };
+
+    precise = (precision = 0) => {
+        const tokens = this.internal.split(DECIMAL_SEPARATOR);
+
+        if (tokens[1] !== undefined) {
+            tokens[1] = tokens[1].slice(0, precision);
+        } else {
+            if (precision > 0) {
+                tokens.push('');
+            }
+        }
+
+        if (tokens[1] !== undefined) {
+            tokens[1] = addTrailingZeros(tokens[1], precision);
+        }
+
+        return tokens[1] ? tokens.join(DECIMAL_SEPARATOR) : tokens[0];
+    }
 };
