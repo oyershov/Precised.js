@@ -10,6 +10,15 @@ Goals:
 - decimal truncation
 - decimal formatting (Bonus)
 
+##Test coverage
+
+```sh
+yarn install  
+```
+_`yarn test` to run all tests_
+OR
+_`yarn test src/test/precise.test.js` to run specific test file_
+
 Arithmetic
 ---
 JS has wrong calculations. Why `0.2 + 0.1` gives us `0.30000000000000004`?.  

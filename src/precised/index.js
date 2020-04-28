@@ -3,14 +3,14 @@ import { as_integer, format, addTrailingZeros } from './helpers';
 /* Should be as params */
 const DECIMAL_SEPARATOR = '.';
 
-export class Decimal {
+export class Precised {
     constructor(num = 0) {
         this.internal = String(+num);
         this.as_int = as_integer(this.internal, DECIMAL_SEPARATOR);
     }
 
     add = target => {
-        const operands = [this, new Decimal(target)];
+        const operands = [this, new Precised(target)];
         operands.sort((x, y) => { return x.as_int.exp - y.as_int.exp });
 
         const smallest = operands[0].as_int.exp;
