@@ -40,12 +40,16 @@ Let`s describe easy way to keep numbers always rounded down.
 | [x] |   Operation   |     Method     |
 |:---:|:--------------|:---------------|
 | [x] | Precising     | (a).precise(n) | 
+
+Todo:  
+- Pass custom decimal separator as parameter
+- Pass thousands separator as parameter
   
 WARNING!
 ---
 **Precised.js** doesn\'t work well with numbers containing more than **16** characters **in sum** (numerical digits). This also applies to decimal places.  
   
-*JavaScript uses 64 bit floating point numbers exclusively, which means you only get about 16 decimal digits of precision. This is a fundamental limitation of the number type.*  
+*JavaScript uses 64 bit floating point numbers exclusively, which means you only get about 16 decimal digits of precision. This is a fundamental limitation of the number type.* -- stackoverflow :)
   
 This means that for correct calculations your number should contain less than 16 characters (before and after dot together).  
 
