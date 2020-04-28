@@ -15,7 +15,7 @@ Goals:
 ```sh
 yarn install  
 ```
-_`yarn test` to run all tests_
+_`yarn test src` to run all tests_
 OR
 _`yarn test src/test/precise.test.js` to run specific test file_
 
