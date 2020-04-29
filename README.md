@@ -5,10 +5,12 @@ JS is very comfortable language for coding. I really like it and think you too :
 But all of us have issues and JS isn\'t an exception.  
 I\'ll try to give solutions for some annoying issues of JS and make my and your life a bit easier.  
 
-Goals:
-- decimal arithmetic
-- decimal truncation
-- decimal formatting (Bonus)
+Features
+---
+
+- Arithmetic
+- Truncation
+- Formatting
 
 ##Test coverage
 
@@ -49,20 +51,27 @@ Let`s describe easy way to keep numbers always rounded down.
 | [x] |   Operation   |     Method     |
 |:---:|:--------------|:---------------|
 | [x] | Precising     | (a).precise(n) | 
-
-Todo:  
-- Pass custom decimal separator as parameter
-- Pass thousands separator as parameter
   
 WARNING!
 ---
 **Precised.js** doesn\'t work well with numbers containing more than **16** characters **in sum** (numerical digits). This also applies to decimal places.  
   
-*JavaScript uses 64 bit floating point numbers exclusively, which means you only get about 16 decimal digits of precision. This is a fundamental limitation of the number type.* -- stackoverflow :)
+*JavaScript uses 64 bit floating point numbers exclusively, which means you only get about 16 decimal digits of precision. This is a fundamental limitation of the number type.*  
   
 This means that for correct calculations your number should contain less than 16 characters (before and after dot together).  
 
 Formatting
 ---
+Another feature is formatting numbers. To present ```10040008.10005``` as ```10 040 008,10005``` we need just to apply *.format()* method  
+```new Precised(10040008.10005).format(" ", ",")```  
 
-To be continue...
+Todo
+---
+
+Arithmetic  
+- all methods :)  
+  
+Truncation    
+- Pass custom decimal separator as parameter  
+- Pass thousands separator as parameter  
+

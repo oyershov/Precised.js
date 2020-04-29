@@ -45,4 +45,23 @@ export class Precised {
 
         return tokens[1] ? tokens.join(DECIMAL_SEPARATOR) : tokens[0];
     }
+
+    format = (thousSep, floatSep) => {
+        const fs = thousSep === floatSep ? '.' : floatSep;
+        let res = this.internal;
+    
+        if (thousSep !== fs) {
+            if (fs) {
+                res = String(res.replace('.', fs));
+            }
+
+            if ((thousSep && fs) || (thousSep && !fs && thousSep !== '.')) {
+                const tokens = res.split(fs || '.');
+                tokens[0] = tokens[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousSep);
+                res = tokens.join(fs || '.');
+            }
+        }
+
+        return res;
+    };
 };
