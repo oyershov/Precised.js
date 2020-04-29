@@ -1,5 +1,4 @@
-# npm
-**/.DS_Store
 yarn.lock
 node_modules
+**/.DS_Store
 *.log
