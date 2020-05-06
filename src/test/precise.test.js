@@ -10,6 +10,14 @@ describe('Precised: precise method', () => {
     expect(new Precised(0.020006).precise(0)).toEqual('0');
   });
 
+  it('Should handle value with custom decimal separator', () => {
+    expect(new Precised(1).precise(2, ',')).toEqual('1,00');
+    expect(new Precised('100500 19').precise(1, ' ')).toEqual('100500 1');
+    expect(new Precised('10005 1234').precise(3, ' ')).toEqual('10005 123');
+    expect(new Precised('0,020006').precise(2, ',')).toEqual('0,02');
+    expect(new Precised('0 020006').precise(0, ' ')).toEqual('0');
+  });
+
   it('Should handle string values', () => {
     expect(new Precised('1').precise(2)).toEqual('1.00');
     expect(new Precised('100500.19').precise(1)).toEqual('100500.1');
@@ -30,8 +38,8 @@ describe('Precised: precise method', () => {
   it('Should handle invalid values', () => {
     expect(new Precised().precise(-1)).toEqual('0');
     expect(new Precised(-1).precise(-1)).toEqual('-1');
-    expect(new Precised('abc').precise(2)).toEqual('NaN.00');
-    expect(new Precised('a1.b2').precise(0)).toEqual('NaN');
+    expect(new Precised('abc').precise(2)).toEqual('abc.00');
+    expect(new Precised('a1.b2').precise(0)).toEqual('a1');
   });
 
   it('Should handle big values', () => {

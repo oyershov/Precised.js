@@ -65,14 +65,3 @@ Formatting
 ---
 Another feature is formatting numbers. To present ```10040008.10005``` as ```10 040 008,10005``` we need just to apply *.format()* method  
 ```new Precised(10040008.10005).format(" ", ",")```  
-
-Todo
----
-
-Arithmetic  
-- all methods :)  
-  
-Truncation    
-- Pass custom decimal separator as parameter  
-- Pass thousands separator as parameter  
-
