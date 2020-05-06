@@ -4,11 +4,15 @@ import { as_integer, format, addTrailingZeros } from './helpers';
 const DEC_SEP = '.'; // decimal separator
 
 export class Precised {
-    constructor(num = 0) {
+    protected internal: string;
+    protected as_int;
+
+    constructor(num: any = 0) {
         this.internal = String(num || 0);
         this.as_int = as_integer(this.internal, DEC_SEP);
     }
 
+    /*
     add = target => {
         const operands = [this, new Precised(target)];
         operands.sort((x, y) => { return x.as_int.exp - y.as_int.exp });
@@ -27,8 +31,9 @@ export class Precised {
     sub = target => {
         return this.add(target * -1);
     };
+    */
 
-    precise = (precision = 0, floatSep) => {
+    private precise(precision: number = 0, floatSep?: string): string {
         const tokens = this.internal.split(floatSep || DEC_SEP);
 
         if (tokens[1] !== undefined) {
@@ -46,7 +51,7 @@ export class Precised {
         return tokens[1] ? tokens.join(floatSep || DEC_SEP) : tokens[0];
     }
 
-    format = (thousSep, floatSep) => {
+    private format(thousSep?: string, floatSep?: string): string {
         const fs = thousSep === floatSep ? DEC_SEP : floatSep;
         let res = this.internal;
     
