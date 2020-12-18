@@ -1,4 +1,4 @@
-import { as_integer, format, addTrailingZeros } from './helpers';
+import { as_integer, format, addTrailingZeros, separate_internal, zero } from './helpers';
 
 /* Default constants */
 const DEC_SEP = '.'; // decimal separator
@@ -6,22 +6,31 @@ const DEC_SEP = '.'; // decimal separator
 export class Precised {
     constructor(num = 0) {
         this.internal = String(num || 0);
-        this.as_int = as_integer(this.internal, DEC_SEP);
+        [this.integer, this.fractional] = separate_internal(this.internal, DEC_SEP);
     }
 
     add = target => {
         const operands = [this, new Precised(target)];
-        operands.sort((x, y) => { return x.as_int.exp - y.as_int.exp });
+        const fractional_max_length = Math.max(operands[0].fractional.length, operands[1].fractional.length);
+        const formatted_first_fractional = operands[0].fractional + zero(fractional_max_length - operands[0].fractional.length);
+        const formatted_second_fractional = operands[1].fractional + zero(fractional_max_length - operands[1].fractional.length);
 
-        const smallest = operands[0].as_int.exp;
-        const biggest = operands[1].as_int.exp;
+        let sum_integer = String(Number(operands[0].integer) + Number(operands[1].integer));
+        let sum_fractional = String(+formatted_first_fractional + +formatted_second_fractional);
 
-        const x = Number(format(operands[1].as_int.value, biggest - smallest, DEC_SEP));
-        const y = Number(operands[0].as_int.value);
+        if (String(sum_fractional).length > fractional_max_length) {
+            sum_integer = String(Number(sum_integer) + 1);
+            sum_fractional = sum_fractional.slice(1);
+        }
 
-        const result = String(x + y);
+        let result = sum_integer;
 
-        return format(result, smallest, DEC_SEP);
+        if (+sum_fractional) {
+            sum_fractional = zero(fractional_max_length - sum_fractional.length) + sum_fractional;
+            result = [sum_integer, sum_fractional].join(DEC_SEP);
+        }
+    
+        return result;
     };
 
     sub = target => {

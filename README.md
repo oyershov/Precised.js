@@ -40,6 +40,14 @@ So idea of **Precised.js** is simple.
 | [ ] | Multiplication | (a).mul(b) |
 | [ ] | Division       | (a).div(b) |
 
+Addition   
+---
+   
+1. Handled `0.2 + 0.1 = 0.3` case and similar.   
+2. Handled calculation for large values (**x2** bigger than default values)   
+   *Old* maximum value for correct calculations: `99999999.99999999`.    
+   *New* maximum value for correct calculations: `9999999999999999.9999999999999999`.   
+   
 Truncation
 ---
 Another problem is numbers truncation. Example: `100.00067.toFixed(4)` gives `100.0007`.  
@@ -65,3 +73,7 @@ Formatting
 ---
 Another feature is formatting numbers. To present ```10040008.10005``` as ```10 040 008,10005``` we need just to apply *.format()* method  
 ```new Precised(10040008.10005).format(" ", ",")```  
+   
+ToDo:   
+1. Addition - handle scientific notation (exponent)
+2. Addition - review the code, simplify if it's possible.

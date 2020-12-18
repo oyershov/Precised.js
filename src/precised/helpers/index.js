@@ -61,7 +61,7 @@ const format = (num, exp, DECIMAL_SEPARATOR) => {
 };
 
 const zero = function(exp) {
-    return new Array(exp + 1).join('0');
+    return exp ? new Array(exp + 1).join('0') : '';
 };
 
 const addTrailingZeros = (targetString, precision) => {
@@ -72,11 +72,22 @@ const addTrailingZeros = (targetString, precision) => {
     return targetString;
 }
 
+const separate_internal = (number, DECIMAL_SEPARATOR) => {
+    number = String(number);
+
+    let tokens = number.split(DECIMAL_SEPARATOR),
+        integer = tokens[0],
+        fractional = tokens[1] || 0;
+
+    return [integer, fractional];
+}
+
 export {
     addTrailingZeros,
     as_integer,
+    format,
     neg_exp,
     pos_exp,
-    format,
+    separate_internal,
     zero,
 }
