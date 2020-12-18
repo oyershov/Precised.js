@@ -2,9 +2,6 @@
   "name": "precised.js",
   "version": "0.3.0",
   "private": true,
-  "dependencies": {
-    "react-scripts": "3.4.1"
-  },
   "scripts": {
     "test": "react-scripts test"
   },
@@ -19,12 +16,13 @@
     "calculation",
     "floating"
   ],
-  "author": "Alexander Yershov",
+  "author": "Oleksandr Yershov",
   "bugs": {
     "url": "https://github.com/oyershov/Precised.js/issues"
   },
   "homepage": "https://github.com/oyershov/Precised.js",
   "devDependencies": {
-    "enzyme": "^3.11.0"
+    "enzyme": "^3.11.0",
+    "react-scripts": "4.0.1"
   }
 }
